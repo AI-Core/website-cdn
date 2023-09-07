@@ -522,7 +522,7 @@
     if (!t) {
       let e = ["GBP", "USD", "EUR"],
         o = c[i];
-      t = e.includes(o) ? o : e[0]
+      t = e.includes(o) ? o : e[1]
     }
     let a = {
       countryCode: i,
@@ -554,7 +554,7 @@
           r = o[2].trim();
           break;
         default:
-          r = o[0].trim()
+          r = o[1].trim()
       }
       e === "currency" ? a.textContent = new Intl.NumberFormat(void 0, {
         style: "currency",
