@@ -215,6 +215,7 @@ const AICORE_DEFS = () => {
 	let containsForms = document.querySelector("form");
 	const QUIZ_TYPEFORM_WRAPPER = document.querySelector(".quiz-typeform-container");
   	const PATHWAY_TYPEFORM_WRAPPER = document.querySelector(".pathway-quiz-typeform-container");
+	const ANNOUNCEMENT_CONTAINER = document.querySelector("#announcement-container");
   	const isPathwayPage = window.location.href.includes("/courses")
   
 
@@ -230,11 +231,21 @@ const AICORE_DEFS = () => {
       	captureParams();
       	pathwayRecommendationSubmission();
       
-		if (!containsForms && !QUIZ_TYPEFORM_WRAPPER && !PATHWAY_TYPEFORM_WRAPPER) return;
+	if (!containsForms && !QUIZ_TYPEFORM_WRAPPER && !PATHWAY_TYPEFORM_WRAPPER) return;
 
 		prepForms();
 		formSubmissions();
 	}
+
+	if(ANNOUNCEMENT_CONTAINER){
+		setTimeout(()=>{
+			if(window.aiCoreParams.region=="England"){
+				ANNOUNCEMENT_CONTAINER.stlye.display = "flex";
+			}
+		}, 1000)	
+	}
+	
+	
 	function captureParams(){
       // get search parameters
 		let urlParams = new URLSearchParams(window.location.search);
