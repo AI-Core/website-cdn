@@ -236,7 +236,8 @@ const AICORE_DEFS = () => {
 		prepForms();
 		formSubmissions();
 	}
-
+	
+	//show announcement container if in england
 	if(ANNOUNCEMENT_CONTAINER){
 		setTimeout(()=>{
 			if(window.aiCoreParams.region=="England"){
