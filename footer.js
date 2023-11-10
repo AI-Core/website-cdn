@@ -240,7 +240,7 @@ const AICORE_DEFS = () => {
 	if(ANNOUNCEMENT_CONTAINER){
 		setTimeout(()=>{
 			if(window.aiCoreParams.region=="England"){
-				ANNOUNCEMENT_CONTAINER.stlye.display = "flex";
+				ANNOUNCEMENT_CONTAINER.style.display = "flex";
 			}
 		}, 1000)	
 	}
