@@ -315,7 +315,11 @@ function uuidv4() {
                 });
               }
           }
-  
+          AICORE.createElement("script", document.body, {
+      			src: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/19.2.12/js/intlTelInput.min.js",
+      			callback: validateInputs
+      		});
+        
           retrieveSID().then((sid) => {
                //set sid
               window.aiCoreParams.sid = sid;
