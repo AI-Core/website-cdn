@@ -573,8 +573,8 @@ function uuidv4() {
         var updateInputValue = function (event) {
                dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
         };
-        input.addEventListener('input', updateInputValue, false);
-        input.addEventListener('countrychange', updateInputValue, false);
+        phoneInput.addEventListener('input', updateInputValue, false);
+        phoneInput.addEventListener('countrychange', updateInputValue, false);
       }
   
       function validateEmail(emailInput) {
