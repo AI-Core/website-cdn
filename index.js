@@ -542,25 +542,29 @@
     }), i.forEach(a => {
       let e = a.dataset.localiseType,
         o = a.dataset.localiseValues.split(","),
-        r;
+        r, ns;
       switch (n) {
         case "GBP":
           r = o[0].trim();
+          ns="£"
           break;
         case "USD":
           r = o[1].trim();
+          ns="$"
           break;
         case "EUR":
           r = o[2].trim();
+          ns="€"
           break;
         default:
+          ns="$"
           r = o[1].trim()
       }
       e === "currency" ? a.textContent = new Intl.NumberFormat(void 0, {
         style: "currency",
         currency: n,
         maximumFractionDigits: 0
-      }).format(r) : e === "text" ? a.textContent = r : e == "link-only" ?  a.href = `${a.protocol}${r.replace(/\s+/g,"")}` : e === "link" && (a.textContent = r, a.href = `${a.protocol}${r.replace(/\s+/g,"")}`)
+      }).format(r) : e === "text" ? a.textContent = r : e == "all-children-currency" ? a.innerHTML = a.innerHTML.replaceAll("$", ns).replaceAll("£", ns).replaceAll("€", ns) :  e == "link-only" ?  a.href = `${a.protocol}${r.replace(/\s+/g,"")}` : e === "link" && (a.textContent = r, a.href = `${a.protocol}${r.replace(/\s+/g,"")}`)
     })
   };
   var d = async () => {
