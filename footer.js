@@ -4,7 +4,6 @@ function uuidv4() {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
   }
-  
   const AICORE = (() => {
       // call init function when the page is ready
       if (document.readyState !== "loading") {
@@ -260,7 +259,7 @@ function uuidv4() {
               referral: urlParams.get("referral"),
                 li_fat_id: urlParams.get("li_fat_id"),
                 country: localStorage.getItem('country'),
-                countrycode: localStorage.getItem("countrycode"),
+                countryCode: localStorage.getItem("countryCode"),
               currencyCode: localStorage.getItem("currencyCode"),
               region: localStorage.getItem("region")
           };
@@ -315,11 +314,13 @@ function uuidv4() {
                 });
               }
           }
-          AICORE.createElement("script", document.body, {
-      			src: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/19.2.12/js/intlTelInput.min.js",
-      			callback: validateInputs
-      		});
-        
+
+            AICORE.createElement("script", document.body, {
+                src: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.16/build/js/intlTelInput.min.js",
+                callback: validateInputs
+            });
+            
+  
           retrieveSID().then((sid) => {
                //set sid
               window.aiCoreParams.sid = sid;
@@ -562,19 +563,22 @@ function uuidv4() {
       }
   
       function validatePhone(phoneInput) {
-        var preferredCountries = ["us", "ca", "gb"]
+        var preferredCountries = ["US", "CA", "GB"]
         var iti = intlTelInput(phoneInput, {
           initialCountry: window.aiCoreParams.countryCode?window.aiCoreParams.countryCode:"us",
-          placeholderNumberType: 'FIXED_LINE',
-          preferredCountries: preferredCountries,
+          hiddenInput: function(phone) {
+            return "intl_phone"
+          },
+          preferredCountries,
+          countrySearch: false,
           utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.1/build/js/utils.js"
         });
         
         var updateInputValue = function (event) {
-               dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
+               //dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
         };
-        phoneInput.addEventListener('input', updateInputValue, false);
-        phoneInput.addEventListener('countrychange', updateInputValue, false);
+        //phoneInput.addEventListener('input', updateInputValue, false);
+        //phoneInput.addEventListener('countrychange', updateInputValue, false);
       }
   
       function validateEmail(emailInput) {
