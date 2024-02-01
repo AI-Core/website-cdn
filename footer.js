@@ -563,11 +563,6 @@ function uuidv4() {
       }
   
       function validatePhone(phoneInput) {
-        var preferredCountries = ["US", "CA", "GB"]
-        /*AICORE.createElement("script", document.body, {
-            src: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.16/build/js/intlTelInput.min.js",
-            callback: validateInputs
-        });*/
         let light_style_string = `.iti__country-list {
             background-color: #ececec;
           color: var(--dark);
@@ -603,8 +598,9 @@ function uuidv4() {
         
         document.head.appendChild(style);
 
+        var preferredCountries = ["US", "CA", "GB"]
         var iti = intlTelInput(phoneInput, {
-          initialCountry: window.aiCoreParams.countryCode?window.aiCoreParams.countryCode:"us",
+          initialCountry: window.aiCoreParams.countryCode||"US",
           hiddenInput: function(phone) {
             return "intl_phone"
           },
@@ -665,9 +661,10 @@ function uuidv4() {
           if (split_on_hash.length > 1) hidden_fields = split_on_hash[split_on_hash.length - 1];
   
           setTimeout(()=>{
-            console.log('adding quiz', window.aiCoreParams)
             // add variables to typeform url
-              form_container.innerHTML = `<div data-tf-disable-auto-focus data-tf-widget="JkXWqhUy" data-tf-iframe-props="title=AiCore Quiz" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode},response_id=${uuidv4()}" style="width:100%;height:100%;"></div>`
+            let cs_map = {"GBP":"£", "EUR":"€", "USD":"$"}
+            let cs = cs_map[window.aiCoreParams.currencyCode] || "$"
+            form_container.innerHTML = `<div data-tf-disable-auto-focus data-tf-widget="JkXWqhUy" data-tf-iframe-props="title=AiCore Quiz" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode},response_id=${uuidv4()},currency_symbol=${cs}" style="width:100%;height:100%;"></div>`
             var s = document.createElement( 'script' );
             s.setAttribute( 'src', "//embed.typeform.com/next/embed.js");
             document.body.appendChild( s );
