@@ -564,8 +564,47 @@ function uuidv4() {
   
       function validatePhone(phoneInput) {
         var preferredCountries = ["US", "CA", "GB"]
+        /*AICORE.createElement("script", document.body, {
+            src: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.16/build/js/intlTelInput.min.js",
+            callback: validateInputs
+        });*/
+        let light_style_string = `.iti__country-list {
+            background-color: #ececec;
+          color: var(--dark);
+        }
+       .iti {
+          display: block;
+        }`
+
+        let dark_style_string = `.iti__country-list {
+            background-color: var(--panel);
+          color: white;
+        }
+       .iti {
+          display: block;
+        }
+        .iti__dial-code{
+          color: #c0c0c0;
+        }
+        .iti__dropdown-content{
+            border-color: #0d0d0d !important;
+        }
+        .iti__divider{
+            border-color: #0d0d0d;
+        }
+        `
+
+        let style = document.createElement('style');
+        if(phoneInput.classList.contains("on-light")){
+            style.textContent = light_style_string;
+        }else{
+            style.textContent = dark_style_string;
+        }
+        
+        document.head.appendChild(style);
+
         var iti = intlTelInput(phoneInput, {
-          initialCountry: window.aiCoreParams.countryCode||"US",
+          initialCountry: window.aiCoreParams.countryCode?window.aiCoreParams.countryCode:"us",
           hiddenInput: function(phone) {
             return "intl_phone"
           },
@@ -626,11 +665,9 @@ function uuidv4() {
           if (split_on_hash.length > 1) hidden_fields = split_on_hash[split_on_hash.length - 1];
   
           setTimeout(()=>{
-            //console.log('adding quiz', window.aiCoreParams)
+            console.log('adding quiz', window.aiCoreParams)
             // add variables to typeform url
-            let cs_map = {"GBP":"£", "EUR":"€", "USD":"$"}
-            let cs = cs_map[window.aiCoreParams.currencyCode] || "$"
-              form_container.innerHTML = `<div data-tf-disable-auto-focus data-tf-widget="JkXWqhUy" data-tf-iframe-props="title=AiCore Quiz" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode},response_id=${uuidv4()},currency_symbol=${cs}" style="width:100%;height:100%;"></div>`
+              form_container.innerHTML = `<div data-tf-disable-auto-focus data-tf-widget="JkXWqhUy" data-tf-iframe-props="title=AiCore Quiz" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode},response_id=${uuidv4()}" style="width:100%;height:100%;"></div>`
             var s = document.createElement( 'script' );
             s.setAttribute( 'src', "//embed.typeform.com/next/embed.js");
             document.body.appendChild( s );
