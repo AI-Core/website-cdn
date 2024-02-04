@@ -681,7 +681,9 @@ function uuidv4() {
           setTimeout(()=>{
             //console.log('adding quiz', window.aiCoreParams)
             // add variables to typeform url
-              form_container.innerHTML += `<div data-tf-disable-auto-focus data-tf-opacity="0" data-tf-widget="HVqGnkwK" data-tf-iframe-props="title=Personalised learning path" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode}" style="width:100%;height:100%;"></div>`
+            let cs_map = {"GBP":"£", "EUR":"€", "USD":"$"}
+            let cs = cs_map[window.aiCoreParams.currencyCode] || "$"
+              form_container.innerHTML += `<div data-tf-disable-auto-focus data-tf-opacity="0" data-tf-widget="HVqGnkwK" data-tf-iframe-props="title=Personalised learning path" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode},currency_symbol=${cs}" style="width:100%;height:100%;"></div>`
             var s = document.createElement( 'script' );
             s.setAttribute( 'src', "//embed.typeform.com/next/embed.js");
             document.body.appendChild( s );
