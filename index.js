@@ -564,7 +564,7 @@
         style: "currency",
         currency: n,
         maximumFractionDigits: 0
-      }).format(r) : e === "text" ? a.textContent = r : e == "all-children-currency" ? a.innerHTML = a.innerHTML.replaceAll("$", ns).replaceAll("£", ns).replaceAll("€", ns) :  e == "link-only" ?  a.href = `${a.protocol}${r.replace(/\s+/g,"")}` : e === "link" && (a.textContent = r, a.href = `${a.protocol}${r.replace(/\s+/g,"")}`)
+      }).format(r) : e === "text" ? a.textContent = r : e == "all-children-currency" ? a.innerHTML = a.innerHTML.replaceAll("$", ns).replaceAll("£", ns).replaceAll("€", ns) :  e == "video-source" ?  (a.src = r, [...document.getElementsByTagName("video")].every((v)=>{v.load()})) :  e == "link-only" ?  a.href = `${a.protocol}${r.replace(/\s+/g,"")}` : e === "link" && (a.textContent = r, a.href = `${a.protocol}${r.replace(/\s+/g,"")}`)
     })
   };
   var d = async () => {
