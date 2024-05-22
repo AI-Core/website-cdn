@@ -229,6 +229,7 @@ function uuidv4() {
       function init() {
             captureParams();
             pathwayRecommendationSubmission();
+            meetingSuccess();
         
       if (!containsForms && !QUIZ_TYPEFORM_WRAPPER && !PATHWAY_TYPEFORM_WRAPPER) return;
   
@@ -443,7 +444,14 @@ function uuidv4() {
               });
           }
       }
-    
+        function meetingSuccess(){
+          let urlParams = new URLSearchParams(window.location.search);
+          let email = urlParams.get("invitee_email")
+  
+          if(email){
+            analytics.identify(email, {email});
+          }
+        }
         function pathwayRecommendationSubmission(){
         if (window.location.href.includes("/courses")){
           let specialism_mapping = {
