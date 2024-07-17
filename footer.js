@@ -606,14 +606,18 @@ function uuidv4() {
         
         document.head.appendChild(style);
 
-        var preferredCountries = ["US", "CA", "GB"]
+        var preferredCountries = ["GB", "DE"]
         var iti = intlTelInput(phoneInput, {
-          initialCountry: window.aiCoreParams.countryCode||"US",
+          //initialCountry: window.aiCoreParams.countryCode||"GB",
+          initialCountry: "auto",
           hiddenInput: function(phone) {
             return "intl_phone"
           },
           preferredCountries,
           countrySearch: false,
+          geoIpLookup: function(success, failure) {
+            setTimeout(()=>{success(window.aiCoreParams.countryCode||"GB")}, 500)
+          },
           utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.1/build/js/utils.js"
         });
         
