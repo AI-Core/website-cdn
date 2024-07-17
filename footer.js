@@ -616,7 +616,7 @@ function uuidv4() {
           preferredCountries,
           countrySearch: false,
           geoIpLookup: function(success, failure) {
-            setTimeout(()=>{success(window.aiCoreParams.countryCode||"GB")}, 500)
+            setTimeout(()=>{success(window.aiCoreParams.countryCode||"GB")}, 100)
           },
           utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.1/build/js/utils.js"
         });
