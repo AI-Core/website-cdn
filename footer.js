@@ -214,7 +214,7 @@ function uuidv4() {
       let containsForms = document.querySelector("form");
       const QUIZ_TYPEFORM_WRAPPER = document.querySelector(".quiz-typeform-container");
         const PATHWAY_TYPEFORM_WRAPPER = document.querySelector(".pathway-quiz-typeform-container");
-      const ANNOUNCEMENT_CONTAINER = document.querySelector("#announcement-container");
+      //const ANNOUNCEMENT_CONTAINER = document.querySelector("#announcement-container");
         const isPathwayPage = window.location.href.includes("/courses")
     
   
@@ -238,13 +238,13 @@ function uuidv4() {
       }
       
       //show announcement container if in england
-      if(ANNOUNCEMENT_CONTAINER){
+      /*if(ANNOUNCEMENT_CONTAINER){
           setTimeout(()=>{
               if(window.aiCoreParams.region=="England"){
                   ANNOUNCEMENT_CONTAINER.style.display = "flex";
               }
           }, 1000)	
-      }
+      }*/
       
       
       function captureParams(){
