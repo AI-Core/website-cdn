@@ -213,7 +213,9 @@ function uuidv4() {
       let phone_number_formatter;
       let containsForms = document.querySelector("form");
       const QUIZ_TYPEFORM_WRAPPER = document.querySelector(".quiz-typeform-container");
-        const PATHWAY_TYPEFORM_WRAPPER = document.querySelector(".pathway-quiz-typeform-container");
+      const PATHWAY_TYPEFORM_WRAPPER = document.querySelector(".pathway-quiz-typeform-container");
+      const SKB_TYPEFORM_WRAPPER = document.querySelector(".bootcamp-eligibility-typeform-container");
+      const AFA_TYPEFORM_WRAPPER = document.querySelector(".afa-typeform-container");
       //const ANNOUNCEMENT_CONTAINER = document.querySelector("#announcement-container");
         const isPathwayPage = window.location.href.includes("/courses")
     
@@ -231,7 +233,7 @@ function uuidv4() {
             pathwayRecommendationSubmission();
             meetingSuccess();
         
-      if (!containsForms && !QUIZ_TYPEFORM_WRAPPER && !PATHWAY_TYPEFORM_WRAPPER) return;
+      if (!containsForms && !QUIZ_TYPEFORM_WRAPPER && !PATHWAY_TYPEFORM_WRAPPER && !SKB_TYPEFORM_WRAPPER && !AFA_TYPEFORM_WRAPPER) return;
   
           prepForms();
           formSubmissions();
@@ -335,7 +337,9 @@ function uuidv4() {
             
                //add typeform quiz
               if (QUIZ_TYPEFORM_WRAPPER){injectQuizTypeform();}
-                if (PATHWAY_TYPEFORM_WRAPPER){injectPathwayQuizTypeform();}
+              if (PATHWAY_TYPEFORM_WRAPPER){injectPathwayQuizTypeform();}
+              if (SKB_TYPEFORM_WRAPPER){injectSkbTypeform();}
+              if (AFA_TYPEFORM_WRAPPER){injectAfaTypeform();}
           });
       }
   
@@ -683,7 +687,7 @@ function uuidv4() {
           }, 500)
       }
     
-        async function injectPathwayQuizTypeform() {
+      async function injectPathwayQuizTypeform() {
           let form_container = document.querySelector(".pathway-quiz-typeform-container");
           let url = window.location.href;
           let split_on_hash = url.split("#");
@@ -696,6 +700,26 @@ function uuidv4() {
             let cs_map = {"GBP":"£", "EUR":"€", "USD":"$"}
             let cs = cs_map[window.aiCoreParams.currencyCode] || "$"
               form_container.innerHTML += `<div data-tf-disable-auto-focus data-tf-opacity="0" data-tf-widget="HVqGnkwK" data-tf-iframe-props="title=Personalised learning path" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode},currency_symbol=${cs}" style="width:100%;height:100%;"></div>`
+            var s = document.createElement( 'script' );
+            s.setAttribute( 'src', "//embed.typeform.com/next/embed.js");
+            document.body.appendChild( s );
+          }, 500)
+      }
+
+      async function injectSkbTypeform() {
+          let form_container = document.querySelector(".bootcamp-eligibility-typeform-container");
+          let url = window.location.href;
+          let split_on_hash = url.split("#");
+          if (split_on_hash.length > 1) hidden_fields = split_on_hash[split_on_hash.length - 1];
+        
+  
+          setTimeout(()=>{
+            //console.log('adding quiz', window.aiCoreParams)
+            // add variables to typeform url
+            //let cs_map = {"GBP":"£", "EUR":"€", "USD":"$"}
+            //let cs = cs_map[window.aiCoreParams.currencyCode] || "$"
+            //form_container.innerHTML += `<div data-tf-disable-auto-focus data-tf-opacity="0" data-tf-widget="HVqGnkwK" data-tf-iframe-props="title=Personalised learning path" data-tf-medium="snippet" data-tf-hidden="sid=${window.aiCoreParams.sid},gclid=${window.aiCoreParams.gclid},fbclid=${window.aiCoreParams.fbc},referral=${window.aiCoreParams.referral},fbp=${window.aiCoreParams.fbp},affiliate=${window.aiCoreParams.affiliate},li_fat_id=${window.aiCoreParams.li_fat_id},country=${window.aiCoreParams.country},currency=${window.aiCoreParams.currencyCode},currency_symbol=${cs}" style="width:100%;height:100%;"></div>`
+            form_container.innerHTML += `<div data-tf-live="01J4KEYWGD71WMDM2E8HEV3YQR" data-tf-hidden="sid=${window.aiCoreParams.sid},country=${window.aiCoreParams.country}"></div>`
             var s = document.createElement( 'script' );
             s.setAttribute( 'src', "//embed.typeform.com/next/embed.js");
             document.body.appendChild( s );
