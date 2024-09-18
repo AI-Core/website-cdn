@@ -1,4 +1,4 @@
-  
+   
 function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
@@ -707,7 +707,8 @@ function uuidv4() {
       }
 
       async function injectSkbTypeform() {
-  
+          let form_container = document.querySelector(".bootcamp-eligibility-typeform-container");
+        
           setTimeout(()=>{
             form_container.innerHTML += `<div data-tf-live="01J4KEYWGD71WMDM2E8HEV3YQR" data-tf-hidden="sid=${window.aiCoreParams.sid},country=${window.aiCoreParams.country}"></div>`
             var s = document.createElement( 'script' );
@@ -717,7 +718,7 @@ function uuidv4() {
       }
 
       async function injectAfaTypeform() {
-  
+          let form_container = document.querySelector(".afa-typeform-container");
           setTimeout(()=>{
             form_container.innerHTML += `<div data-tf-live="01J6VM8RNPARBGTGAVECYDJ3PS" data-tf-hidden="sid=${window.aiCoreParams.sid},country=${window.aiCoreParams.country}"></div>`
             var s = document.createElement( 'script' );
